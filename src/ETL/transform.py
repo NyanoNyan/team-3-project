@@ -73,7 +73,7 @@ def chunks(lst, n):
         yield lst[i:i + n]
 
 
-def transform_unique_product(data):
+def transform_unique_product(data, chunk_func):
     extract = Extract()
     # data = extract.extract_dict("../../data/cleaned_data.csv")
     item_store_list = []
@@ -92,9 +92,9 @@ def transform_unique_product(data):
                 item_store_list.append(item_store)
     return item_store_list
 
-def get_unique_item(data):
+def get_unique_item(data, transform_func):
     store = []
-    transactions = transform_unique_product(data)
+    transactions = transform_unique_product(data, chunks)
     for trans in transactions:
         in_store = False
         for item in store:
